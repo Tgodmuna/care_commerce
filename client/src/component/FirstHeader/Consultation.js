@@ -16,8 +16,7 @@ function Consultation() {
   //   };
 
   //   const handleMessageChange = (event) => {
-    //     setMessage(event.target.value);
-    
+  //     setMessage(event.target.value);
 
   const [form, setform] = useState({ name: "", email: "", message: "" });
   //single formHandler
@@ -35,7 +34,11 @@ function Consultation() {
       email: form.email,
       message: form.message,
     };
-    if (formData.email !== '' && formData.name !== '' && formData.message !== '') {
+    if (
+      formData.email !== "" &&
+      formData.name !== "" &&
+      formData.message !== ""
+    ) {
       fetch("http://localhost:4000/send", {
         method: "POST",
         headers: {
@@ -61,48 +64,51 @@ function Consultation() {
   };
 
   return (
-    <div className="w-full bg-black p-4 h-screen bg-opacity-80 absolute ">
-        <div className='bg-gray-500 m-auto mt-[15rem] w-[50vw] text-white-900 p-8 rounded-lg shadow-lg '>
-            <h1 className='text-2xl text-center uppercase m-auto font-bold'>consultation Form</h1>
-          <form onSubmit={handleSubmit}>
-            <div className='mt-4'>
-              <span className='labelStyle'>Full Name</span>
-              <input
-                onChange={formHandler}
-                name='fullName'
-                className='w-full bg-white-900 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline'
-                type='text'
-                placeholder='Full Name'
-              />
-            </div>
-            <div className='mt-4'>
-              <span className='labelStyle'>Email</span>
-              <input
-                onChange={formHandler}
-                name='email'
-                className='w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline'
-                type='text'
-                placeholder='Email@gmail.com'
-              />
-            </div>
-            <div className='mt-4'>
-              <span className='labelStyle'>Message</span>
-              <textarea
-                onChange={formHandler}
-                name='message'
-                className='w-full h-32 bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline'
-                placeholder='Leave a message for us or discuss you problem'
-              />
-            </div>
-            <div className='mt-4 m-auto w-[12rem]'>
-              <button
-                onClick={handleSubmit}
-                className=' hover:bg-indigo-300 text-sm font-bold bg-indigo-500 text-gray-100 p-3 rounded-lg w-[10rem] focus:outline-none focus:shadow-outline'>
-                Send Message 
-              </button>
-            </div>
-          </form>
-        </div>
+    <div className='w-full bg-black p-4 h-[102vw] bg-opacity-80 absolute z-20 '>
+      <div className='bg-gray-500 m-auto mt-[15rem] w-[50vw] text-white-900 p-8 rounded-lg shadow-lg '>
+        <h1 className='text-2xl text-center uppercase m-auto font-bold'>
+          consultation Form
+        </h1>
+        <form onSubmit={handleSubmit}>
+          <div className='mt-4'>
+            <span className='labelStyle'>Full Name</span>
+            <input
+              onChange={formHandler}
+              name='fullName'
+              className='w-full bg-white-900 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline'
+              type='text'
+              placeholder='Full Name'
+            />
+          </div>
+          <div className='mt-4'>
+            <span className='labelStyle'>Email</span>
+            <input
+              onChange={formHandler}
+              name='email'
+              className='w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline'
+              type='text'
+              placeholder='Email@gmail.com'
+            />
+          </div>
+          <div className='mt-4'>
+            <span className='labelStyle'>Message</span>
+            <textarea
+              onChange={formHandler}
+              name='message'
+              className='w-full h-32 bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline'
+              placeholder='Leave a message for us or discuss you problem'
+            />
+          </div>
+          <div className='mt-4 m-auto w-[12rem]'>
+            <button
+              id='SUBbtn'
+              onClick={handleSubmit}
+              className=' hover:bg-indigo-300 text-sm font-bold bg-indigo-500 text-gray-100 p-3 rounded-lg w-[10rem] focus:outline-none focus:shadow-outline'>
+              Send Message
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

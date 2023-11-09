@@ -292,7 +292,7 @@ function Brand() {
   const brandsPerRow = 7;
 
   const brandList = carBrands.map((item, index) => (
-    <li key={index} className='mb-2 mx-auto w-1/2 sm:w-1/4 md:w-1/5'>
+    <li key={index} className='my-4 text-white text-xl mx-auto w-1/2 sm:w-1/4 md:w-1/5'>
       <Link to={`/brands/${item.brand.toLowerCase()}`}>
         <div className='flex items-center space-x-2'>
           <img
@@ -347,14 +347,16 @@ function Brand() {
 
         {/* brandslist panel */}
         {isModalOpen && (
-          <div className='w-[65vw] m-auto flex  '>
-            <ul className='m-auto w-full'>{rows}</ul>
+          <>
+            <ul className='w-[100vw] m-auto bg-black  h-[100vw] bg-opacity-95 absolute z-20'>
+              {rows}
+            </ul>
             <CloseIcon
               fontSize='large'
-              className=' hover:bg-black hover:text-white relative top-[-1rem] bg-gray-400 rounded-lg font-bold text-white right-2 cursor-pointer'
+              className=' hover:bg-black absolute  hover:text-white  top-[9rem] z-20 bg-gray-400 rounded-lg font-bold text-white right-2 cursor-pointer'
               onClick={closeModal}
             />
-          </div>
+          </>
         )}
 
         {isConsultationOpen && <LazyConsultation />}

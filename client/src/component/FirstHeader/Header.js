@@ -1,45 +1,43 @@
 import React, { useState } from "react";
 import Search from "../FirstHeader/Search";
-import City from "./Icon/City";
-import Share from "./Icon/Share";
-import Love from "./Icon/Love";
-import Chart from "./Icon/Chart";
-import User from "./Icon/User";
+import { BiCartDownload, BiLogIn } from "react-icons/bi";
+import { CiShare1 } from "react-icons/ci";
 import MenuIcon from "@mui/icons-material/Menu";
-import Brand from "./Brand";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  let navigate = useNavigate();
   const headerIcon = [
     {
-      Icon: <City />,
+      Icon: null,
     },
     {
-      Icon: <Share />,
+      Icon: null,
     },
     {
-      Icon: <Love />,
+      Icon: <CiShare1 />,
     },
     {
-      Icon: <Chart />,
+      Icon: <BiCartDownload />,
     },
     {
-      Icon: <User />,
+      Icon: <BiLogIn onClick={() => navigate("/register")} className="cursor-pointer" title='Login' />,
     },
   ];
 
-  const headerIcons = headerIcon.map((item, index) => (
+  const Icons = headerIcon.map((item, index) => (
     <li key={index}>{item.Icon}</li>
   ));
-
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
-    <div>
+    <>
       <header className='flex bg-gray-900 space-x-4 justify-between py-2 px-4'>
+        {/* logo and search bar */}
         <div className='flex justify-around  space-x-20'>
           <img
             src='https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg'
@@ -51,7 +49,7 @@ function Header() {
 
         {/* Desktop Menu */}
         <ul className='hidden md:flex text-white font-bold text-2xl items-center space-x-12 mt-4 md:mt-0'>
-          {headerIcons}
+          {Icons}
         </ul>
       </header>
       {/* mobile sidemenu barIcon */}
@@ -64,18 +62,16 @@ function Header() {
       {isMobileMenuOpen && (
         <div
           className='fixed top-0 left-0 w-full h-full bg-gray-600 bg-opacity-50 z-10'
-          onClick={ toggleMobileMenu }>
-          </div>
+          onClick={toggleMobileMenu}></div>
       )}
       {/* Sliding Mobile Menu */}
       <div
         className={`fixed top-0 left-0 h-full w-60 bg-white transform ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-60"
         } transition-transform duration-300 z-20`}>
-        <ul className='p-4 border border-gray-200 space-x-12'>{headerIcons}</ul>
+        <ul className='p-4 border border-gray-200 space-x-12'>{Icons}</ul>
       </div>
-      <Brand />
-    </div>
+    </>
   );
 }
 

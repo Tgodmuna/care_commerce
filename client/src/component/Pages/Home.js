@@ -1,14 +1,14 @@
-import React from 'react'
-import Header from '../FirstHeader/Header'
-// import Carousel from '../SecondHeader/Carousel'
+import React from "react";
+import Header from "../FirstHeader/Header";
+import Brand from "../FirstHeader/Brand";
 
 function Home() {
   return (
     <div className=''>
       <Header />
-      {/* <Carousel /> */}
+      <Brand />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
