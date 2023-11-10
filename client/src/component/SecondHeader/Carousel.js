@@ -60,13 +60,13 @@ class Carousel extends Component {
           <Swipe onSwipeLeft={this.nextSlide} onSwipeRight={this.prevSlide}>
             {CarouselData.map((slide, index) => {
               return (
-                <div key={index} className="relative">
+                <div key={index} className="relative w-[100vw] m-auto ">
                   <img
                     src={slide.image}
                     alt="This is a carousel slide"
                     className={
                       index === this.state.currentSlide
-                        ? "block w-full h-full object-cover"
+                        ? "block w-full h-full object-cover m-auto "
                         : "hidden"
                     }
                     onMouseEnter={() => {
