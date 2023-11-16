@@ -20,7 +20,7 @@ const Register = () => {
     //update the formData state by computed value using the destructured values from the event object
     setFormData((prevState) => ({
       //this prevState parameter has access to old state
-      //we can now copy all them to the new state obeject and update the needed state property.
+      //we can now copy all them to the new state object and update the needed state property.
       //this ensures that the each state property do not override each other.
       ...prevState,
       [name]: value,
@@ -37,7 +37,7 @@ const Register = () => {
       FormData.occupation !== "" &&
       FormData.password !== ""
     ) {
-      axios.post("jkkjnsjkns", FormData).then((response) => {
+      axios.post("http://localhost:4000/register", FormData).then((response) => {
         error.errorStatus = response.status;
         error.errorText = response.statusText;
         console.log(FormData);
@@ -124,6 +124,13 @@ const Register = () => {
               password
             </label>
           </div>
+          
+          <div>
+                <button onClick={() => Navigate('/login')}>
+                    Already have an account <span>Login</span>                
+                </button>
+            </div>
+
           <button
             onClick={() => handleSubmit()}
             type='submit'
@@ -131,6 +138,13 @@ const Register = () => {
             Submit
           </button>
         </div>
+
+              {/* <div>
+                <button onClick={() => Navigate('/login')}>
+                    Already have an account <span>Login</span>                
+                </button>
+            </div> */}
+
         <div className='child2 '>
           {/* country wrapper */}
           <div className='fUllname flex flex-col mt-[3rem] mb-[1rem] w-full mx-4'>
