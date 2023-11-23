@@ -1,23 +1,5 @@
 import React, { useState } from "react";
 function Consultation() {
-  // Add state variables for form inputs
-  //   const [name, setName] = useState("");
-  //   const [email, setEmail] = useState("");
-  //   const [message, setMessage] = useState("");
-
-  // Handle input changes
-
-  //   const handleNameChange = (event) => {
-  //     setName(event.target.value);
-  //   };
-
-  //   const handleEmailChange = (event) => {
-  //     setEmail(event.target.value);
-  //   };
-
-  //   const handleMessageChange = (event) => {
-  //     setMessage(event.target.value);
-
   const [form, setform] = useState({ name: "", email: "", message: "" });
   //single formHandler
   const formHandler = (e) => {
@@ -39,7 +21,7 @@ function Consultation() {
       formData.name !== "" &&
       formData.message !== ""
     ) {
-      fetch("http://localhost:4000/send", {
+      fetch("http://localhost:4000/submit-message", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

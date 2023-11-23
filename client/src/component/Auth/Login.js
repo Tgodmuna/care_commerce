@@ -4,17 +4,17 @@ import axios from "axios";
 import LoginMessage from "./LoginMessage";
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+  const [showForgotPasswordMessage, setShowForgotPasswordMessage] =
+    useState(false);
 
   const closeMessage = () => {
     setShowMessage(false);
   };
-  const navigate = useNavigate();
-  const [showForgotPasswordMessage, setShowForgotPasswordMessage] =
-    useState(false);
 
   const handleForgotPassword = () => {
     setShowForgotPasswordMessage(true);
@@ -22,24 +22,35 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Email:", email);
+    console.log("Password:", password);
+
     axios
       .post("http://localhost:4000/login", { email, password })
       .then((result) => {
-        console.log(result.data);
-        if (result.data.message === "successfull") {
+        console.log("Login result:", result.data);
+
+        if (result.data.status === "success") {
           setShowMessage(true);
           setMessage("Login successful");
-          navigate("/home");
-        } else if (result.data === "invalid password") {
+          console.log("Redirecting to dashboard");
+          navigate("/dashboard");
+        } else if (result.data.message === "invalid credentials") {
           setShowMessage(true);
           setMessage("Invalid password. Please try again.");
-        } else if (result.data === "non existed record") {
+        } else if (result.data.message === "User doesn't exist") {
           setShowMessage(true);
           setMessage("No record found. Please register first.");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.error("Error response:", err.response);
+        if (err.response && err.response.data) {
+          console.error("Error data:", err.response.data);
+        }
+      });
   };
+
   return (
     <section>
       <div>
@@ -55,9 +66,8 @@ const Login = () => {
                   type="email"
                   name="email"
                   placeholder="Email"
-                  // value={}
                   onChange={(e) => setEmail(e.target.value)}
-                />{" "}
+                />
               </div>
             </div>
 
@@ -67,9 +77,8 @@ const Login = () => {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  // value={}
                   onChange={(e) => setPassword(e.target.value)}
-                />{" "}
+                />
               </div>
             </div>
           </div>
@@ -86,14 +95,16 @@ const Login = () => {
           </div>
 
           <div>
-            <button>Log In</button>
+            <button type="submit">Log In</button>
           </div>
         </form>
       </div>
 
+      <button onClick={() => navigate("/dashboard")}>Go to Dashboard</button>
+
       <div>
         <button onClick={() => navigate("/register")}>
-          <span>you don't have an account</span>
+          <span>You don't have an account</span>
         </button>
       </div>
 

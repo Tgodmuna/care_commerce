@@ -96,8 +96,8 @@ function TopCategory() {
 
   <div>
   {isModalOpen && (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-80 z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg">
+    <div className="">
+      <div className="bg-white p-6 rounded-lg shadow-lg mt-8">
         <div className="text-center">
           <h2 className="text-2xl font-semibold mb-4 md:mb-4">Top Celebrities</h2>
         </div>

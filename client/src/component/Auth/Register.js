@@ -27,25 +27,37 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    if (
-      FormData.Email !== "" &&
-      FormData.Marital_status !== "" &&
-      FormData.UserName !== "" &&
-      FormData.country !== "" &&
-      FormData.fullName !== "" &&
-      FormData.occupation !== "" &&
-      FormData.password !== ""
-    ) {
-      axios.post("http://localhost:4000/register", FormData).then((response) => {
-        error.errorStatus = response.status;
-        error.errorText = response.statusText;
-        console.log(FormData);
-        if (response.status === 200) Navigate("/login");
-        return;
-      });
-    }
-  };
+ const handleSubmit = async () => {
+   if (
+     FormData.Email !== "" &&
+     FormData.Marital_status !== "" &&
+     FormData.UserName !== "" &&
+     FormData.country !== "" &&
+     FormData.fullName !== "" &&
+     FormData.occupation !== "" &&
+     FormData.password !== ""
+   ) {
+     try {
+       const response = await axios.post(
+         "http://localhost:4000/register",
+         FormData
+       );
+       error.errorStatus = response.status;
+       error.errorText = response.statusText;
+       console.log(FormData);
+       if (response.status === 201) {
+         console.log("Navigating to login...");
+         Navigate("/login");
+       } else {
+         console.log("Registration failed:", response);
+       }
+     } catch (error) {
+       console.error("Registration error:", error);
+       // Handle the error as needed (e.g., display an error message)
+     }
+   }
+ };
+
 
   const hidelabel = (index) => {
     const input = document.getElementsByClassName("inputs")[index];
