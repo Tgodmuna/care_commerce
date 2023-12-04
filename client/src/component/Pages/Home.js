@@ -2,10 +2,9 @@ import React from "react";
 import Header from "../FirstHeader/Header";
 import Brand from "../FirstHeader/Brand";
 
-function Home() {
+function  Home() {
   return (
     <div className=''>
-      <Header />
       <Brand />
     </div>
   );

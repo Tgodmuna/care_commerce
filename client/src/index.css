@@ -3,13 +3,41 @@
 @tailwind utilities;
 
 .labelStyle {
-    @apply text-xl text-gray-600 font-bold
+  @apply text-xl text-gray-600 font-bold;
 }
 
 .userStyle {
-    @apply font-bold text-2xl text-gray-500 mt-[3rem] uppercase font-serif
+  @apply font-bold text-2xl text-gray-500 mt-[3rem] uppercase font-serif;
 }
 
 .InputlabelStyle {
-    @apply relative top-[-3rem] m-2 px-1 uppercase font-extralight text-xl peer-focus:translate-y-[-3rem] peer-invalid:text-red-600 peer-invalid:font-extrabold peer-invalid:before:content-['invalid_'] text-slate-600 transition-all
+  @apply relative top-[-3rem] m-2 px-1 uppercase font-extralight text-xl peer-focus:translate-y-[-3rem] peer-invalid:text-red-600 peer-invalid:font-extrabold peer-invalid:before:content-['invalid_'] text-slate-600 transition-all;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.time {
+  animation-duration: 120ms;
+  animation-iteration-count: 1;
+}
+
+.BuyBtn_Animation {
+  @apply animate-spin time;
+}
+
+.bg:hover {
+  @apply BuyBtn_Animation transition-all;
+}
+
+.ViewCard_P{
+  @apply text-2xl text-black font-semibold uppercase m-auto 
+}
+.arrow{
+  @apply bg-black text-sky-700 hover:text-sky-400  absolute text-[6rem] top-[20rem] rounded-xl hover:ring-white ring-1 hover:cursor-pointer 
 }

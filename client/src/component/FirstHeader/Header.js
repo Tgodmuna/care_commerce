@@ -22,7 +22,13 @@ function Header() {
       Icon: <BiCartDownload />,
     },
     {
-      Icon: <BiLogIn onClick={() => navigate("/register")} className="cursor-pointer" title='Login' />,
+      Icon: (
+        <BiLogIn
+          onClick={() => navigate("/register")}
+          className='cursor-pointer'
+          title='Login'
+        />
+      ),
     },
   ];
 
@@ -45,6 +51,23 @@ function Header() {
             className='w-12 h-12 ms-8 shadow-lg rounded-sm'
           />
           <Search className='ms-12' />
+          <div className='mx-3 m-auto w-[60rem] items-center justify-center '>
+            <ul className=' flex justify-center gap-[13rem] items-center w-full p-5 '>
+              <li
+                className='uppercase text-xl text-slate-200 font-serif hover:underline hover:cursor-pointer hover:text-gray-600 '
+                onClick={() => {
+                  navigate("/new_arrival");
+                }}>
+                new arrival
+              </li>
+              <li className='uppercase text-xl text-slate-200 font-serif hover:underline hover:cursor-pointer hover:text-gray-600'>
+                new Models
+              </li>
+              <li className='uppercase text-xl text-slate-200 font-serif hover:underline hover:cursor-pointer hover:text-gray-600 '>
+                Latest Model
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Desktop Menu */}
